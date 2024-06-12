@@ -30,3 +30,28 @@
   border: 2px solid #003366;
   width: 15%;
 }
+
+.Post-Details {
+  width: 30%;
+  margin-top: 5%;
+}
+
+.Form-Container {
+  border: 2px solid #003366;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 25px;
+  padding-bottom: 10px;
+}
+
+.Label-Container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.Label {
+  margin-right: 15px;
+  font-weight: bold;
+}

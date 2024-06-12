@@ -1,28 +1,21 @@
 import React, { useState } from "react";
 import Posts from "./Posts";
+import PostDetails from "./PostDetails";
+import AddPost from "./AddPost";
 
 const Dashboard = () => {
-  const [title, setTitle] = useState("");
-  const [name, setName] = useState("");
-
-  const handleOnClick = () => {
-    setName(title);
-    setTitle("");
-  };
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [updateFlag, setUpdateFlag] = useState(false);
 
   return (
     <div>
-      <Posts title={name} />
-      <input
-        type="text"
-        value={title}
-        style={{ marginTop: "10px" }}
-        onChange={(e) => setTitle(e.target.value)}
+      <Posts setSelectedPost={setSelectedPost} updateFlag={updateFlag} />
+      <AddPost updateFlag={updateFlag} setUpdateFlag={setUpdateFlag} />
+      <PostDetails
+        selectedPostId={selectedPost}
+        updateFlag={updateFlag}
+        setUpdateFlag={setUpdateFlag}
       />
-      <br />
-      <button style={{ marginTop: "10px" }} onClick={handleOnClick}>
-        Change Name
-      </button>
     </div>
   );
 };
