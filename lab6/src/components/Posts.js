@@ -1,37 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
+import axios from "axios";
 
-const Posts = ({ title }) => {
-  const [post, setPost] = useState([
-    {
-      id: 111,
-      title: "Happiness",
-      author: "John",
-    },
-    {
-      id: 112,
-      title: "MIU",
-      author: "Dean",
-    },
-    {
-      id: 113,
-      title: "Enjoy Life",
-      author: "Jasmine",
-    },
-  ]);
+const Posts = ({ setSelectedPost, updateFlag }) => {
+  const [post, setPost] = useState([]);
+
+  const fetchPosts = () => {
+    axios
+      .get("http://localhost:8080/posts")
+      .then((response) => setPost(response.data))
+      .catch((error) => console.log(error));
+  };
 
   useEffect(() => {
-    if (title && post.length > 0) {
-      const updatePost = [...post];
-      updatePost[0].title = title;
-      setPost(updatePost);
-    }
-  }, [title]);
+    fetchPosts();
+  }, [updateFlag]);
 
   return (
     <div className="Post-Container">
       {post.map((p) => (
-        <Post postProp={p} key={p.id} />
+        <Post postProp={p} key={p.postId} onClick={setSelectedPost} />
       ))}
     </div>
   );
