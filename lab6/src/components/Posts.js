@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Post from "./Post";
 import axios from "axios";
+import { PostIdConfig } from "./context/PostIdConfig";
 
-const Posts = ({ setSelectedPost, updateFlag }) => {
+const Posts = ({ updateFlag }) => {
   const [post, setPost] = useState([]);
+  const { setSelectedPost } = useContext(PostIdConfig);
 
   const fetchPosts = () => {
     axios
