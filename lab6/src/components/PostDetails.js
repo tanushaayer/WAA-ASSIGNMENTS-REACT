@@ -1,10 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { PostIdConfig } from "./context/PostIdConfig";
 
-const PostDetails = ({ selectedPostId, updateFlag, setUpdateFlag }) => {
+const PostDetails = ({ updateFlag, setUpdateFlag }) => {
   const [postDetail, setPostDetail] = useState(null);
+  const { selectedPost } = useContext(PostIdConfig);
 
-  let post = `http://localhost:8080/posts/${selectedPostId}`;
+  let post = `http://localhost:8080/posts/${selectedPost}`;
 
   const fetchSelectedPost = () => {
     axios
@@ -24,10 +26,10 @@ const PostDetails = ({ selectedPostId, updateFlag, setUpdateFlag }) => {
   };
 
   useEffect(() => {
-    if (selectedPostId) {
+    if (selectedPost) {
       fetchSelectedPost();
     }
-  }, [selectedPostId]);
+  }, [selectedPost]);
 
   return (
     <div className="Post-Container">
